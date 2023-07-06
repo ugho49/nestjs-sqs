@@ -1,6 +1,6 @@
 {
-  "name": "@ssut/nestjs-sqs",
-  "version": "2.1.0",
+  "name": "@ugho49/nestjs-sqs",
+  "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,25 +14,27 @@
     "lint": "eslint \"lib/**/*.ts\" --fix"
   },
   "bugs": {
-    "url": "https://github.com/ssut/nestjs-sqs/issues"
+    "url": "https://github.com/ugho49/nestjs-sqs/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ssut/nestjs-sqs.git"
+    "url": "git+https://github.com/ugho49/nestjs-sqs.git"
   },
   "keywords": [],
-  "author": "Suhun Han <ssut@ssut.me>",
+  "author": "Ugho STEPHAN",
   "license": "MIT",
   "dependencies": {
     "@golevelup/nestjs-discovery": "^3.0.0",
     "sqs-consumer": "^7.0.3",
-    "sqs-producer": "^3.1.1"
+    "sqs-producer": "^3.1.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@nestjs/common": "^9.4.0",
     "@nestjs/core": "^9.4.0",
     "@nestjs/testing": "^9.4.0",
     "@types/jest": "^27.5.2",
+    "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
     "eslint": "^7.32.0",
@@ -53,6 +55,5 @@
     "@aws-sdk/client-sqs": "^3.321.1",
     "@nestjs/common": "^6.10.11 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0",
     "@nestjs/core": "^6.10.11 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0"
-  },
-  "packageManager": "pnpm@8.3.1"
+  }
 }

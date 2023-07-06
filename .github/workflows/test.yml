@@ -8,28 +8,18 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x, 18.x, 20.x]
-    services:
-      elasticmq:
-        image: s12v/elasticmq
-        options: -p 9324:9324 -v /tmp/elasticmq:/etc/elasticmq --name elasticmq
     steps:
       - uses: actions/checkout@v3
-      - run: sudo cp ${{ github.workspace }}/.github/build/elasticmq.conf /tmp/elasticmq
-      - name: Restart elasticmq
-        uses: docker://docker
+      - uses: isbang/compose-action@v1.4.1
         with:
-          args: docker restart elasticmq
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+          compose-file: "./docker-compose.yml"
       - uses: actions/setup-node@v3
         name: Use Node.js ${{ matrix.node-version }}
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
-      - run: pnpm install
+          cache: 'yarn'
+      - run: yarn install
       - name: check lint
-        run: pnpm run lint
+        run: yarn lint
       - name: test
-        env:
-          SQS_ENDPOINT: http://localhost:9324
-        run: pnpm run test:e2e
+        run: yarn test:e2e
