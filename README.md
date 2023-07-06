@@ -73,10 +73,10 @@ import { Message } from '@aws-sdk/client-sqs';
 
 @Injectable()
 export class AppMessageHandler {
-  @SqsMessageHandler(/** name: */ 'queueName', /** batch: */ false)
+  @SqsMessageHandler({ name: "queueName", batch: false })
   public async handleMessage(message: Message) {}
 
-  @SqsConsumerEventHandler(/** name: */ 'queueName', /** eventName: */ 'processing_error')
+  @SqsConsumerEventHandler({ name: "queueName", eventName: "processing_error" })
   public onProcessingError(error: Error, message: Message) {
     // report errors here
   }
@@ -91,8 +91,14 @@ export class AppService {
     private readonly sqsService: SqsService,
   ) { }
 
-  public async dispatchSomething() {
-    await this.sqsService.send(/** name: */ 'queueName', {
+  public async simpleDispatch() {
+    await this.sqsService.send('queueName', {
+      body: { ... },
+    });
+  }
+
+  public async fullDispatch() {
+    await this.sqsService.send('queueName', {
       id: 'id',
       body: { ... },
       groupId: 'groupId',
